@@ -8,8 +8,28 @@ function displayDate() {
 
 setInterval(displayDate, 1000);
 
-// THEN I am presented with timeblocks for standard business hours
+function checkTime() {
+  // get the current hour
+  const currentHour = moment().hour();
+  console.log(currentHour);
 
+  //   Loop for each time-block and get the id (hour) compare it to the current time add class
+  $(".time-block").each(function () {
+    const hourOfTB = parseInt($(this).attr("id"));
+
+    if (hourOfTB < currentHour) {
+      $(this).addClass("past");
+    }
+    if (hourOfTB === currentHour) {
+      $(this).addClass("present");
+    }
+    if (hourOfTB > currentHour) {
+      $(this).addClass("future");
+    }
+  });
+}
+
+checkTime();
 // WHEN I view the timeblocks for that day
 // THEN each timeblock is color coded to indicate whether it is in the past, present, or future
 

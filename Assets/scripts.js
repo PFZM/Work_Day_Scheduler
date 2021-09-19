@@ -1,5 +1,4 @@
-// the current day is displayed at the top of the calendar
-
+// Current time and date displayed in jumbotron
 function displayDate() {
   const date = moment().format("dddd, DD-MMM-YYYY");
   const time = moment().format("HH:mm:ss");

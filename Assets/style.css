@@ -19,11 +19,12 @@ textarea {
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
-  padding-bottom: 5px;
 }
 
 .description {
   white-space: pre-wrap;
+  width: inherit;
+  height: inherit;
 }
 
 .time-block {

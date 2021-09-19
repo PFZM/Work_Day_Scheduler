@@ -8,12 +8,12 @@ function displayDate() {
 
 setInterval(displayDate, 1000);
 
-function checkTime() {
+// function to check time and retrive items from local storage
+function ckTimeAndRtrLs() {
   // get the current hour
   const currentHour = moment().hour();
-  console.log(currentHour);
 
-  //   Loop for each time-block and get the id (hour) compare it to the current time add class
+  //   Loop for each time-block and get the #id (hour) compare it to the current time add class
   $(".time-block").each(function () {
     const hourOfTB = parseInt($(this).attr("id"));
 
@@ -26,18 +26,25 @@ function checkTime() {
     if (hourOfTB > currentHour) {
       $(this).addClass("future");
     }
+    // check and retrieve values in local storage
+    for (let i = 0; i < localStorage.length; i++) {
+      const keyName = window.localStorage.key(i);
+      if (keyName == hourOfTB) {
+        const prevTask = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        console.log(prevTask);
+        $(this).children("textarea").text(prevTask);
+      }
+    }
   });
 }
 
-checkTime();
-// WHEN I view the timeblocks for that day
-// THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+ckTimeAndRtrLs();
 
-// WHEN I click into a timeblock
-// THEN I can enter an event
-
-// WHEN I click the save button for that timeblock
-// THEN the text for that event is saved in local storage
-
-// WHEN I refresh the page
-// THEN the saved events persist
+// When button "save" is clicked, the event is saved in local storge
+$("button").click(function () {
+  const task = $(this).prev().val();
+  localStorage.setItem(
+    $(this).parent().attr("id"),
+    JSON.stringify(task.trim())
+  );
+});

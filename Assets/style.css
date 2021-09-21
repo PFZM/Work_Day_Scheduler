@@ -23,8 +23,8 @@ textarea {
 
 .description {
   white-space: pre-wrap;
-  width: inherit;
-  height: inherit;
+  /* width: inherit;
+  height: inherit; */
 }
 
 .time-block {
